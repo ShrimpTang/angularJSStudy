@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body ng-controller="myController">
+<div ui-view="viewA"></div>
+<div ui-view="viewB"></div>
+<div ui-view="viewC"></div>
+<a ui-sref="index.one">one</a>
+<!--<a ui-sref="state1">State 1</a>
+<a ui-sref="state2">State 2</a>-->
+
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script>
+    var app = angular.module("myApp", ['ui.router']);
+
+
+    app.config(function ($stateProvider, $urlRouterProvider) {
+        $urlRouterProvider.otherwise('/index');
+        $stateProvider.state('index', {
+            url: "/index",
+            views: {
+                "viewA": {
+                    template: "<h1>ViewA</h1>"
+                }, "viewB": {
+                    template: "<h1>ViewB</h1>"
+                }
+
+            }
+        }).state('index.one',{
+            url:"/one",
+            views:{
+                "viewC@":{
+                    template:"<h3>one!</h3>"
+                }
+            }
+        });
+    });
+    app.controller('myController', function ($scope) {
+
+    });
+</script>
+</body>
+</html>

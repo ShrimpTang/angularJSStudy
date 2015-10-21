@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body ng-controller="myController">
+<div ui-view></div>
+<a ui-sref="state1">State 1</a>
+<a ui-sref="state2">State 2</a>
+
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script>
+    var app = angular.module("myApp", ['ui.router']);
+
+
+    app.config(function ($stateProvider, $urlRouterProvider) {
+        $urlRouterProvider.otherwise('/state1');
+        $stateProvider.state('state1', {
+            url: "/state1",
+            templateUrl: "tpl/state1.html"
+        }).state('state1.list', {
+            url: '/list',
+            templateUrl: "tpl/state1.list.html",
+            controller: function ($scope) {
+                $scope.items = ["A", "List", "Of", "Items"];
+            }
+        }).state('state2', {
+            url: "/state2",
+            templateUrl: "tpl/state2.html"
+        }).state('state2.list', {
+            url: "/list",
+            templateUrl: "tpl/state2.list.html",
+            controller: function ($scope) {
+                $scope.things = ["A", "Set", "Of", "Things"];
+            }
+        });
+    });
+    app.controller('myController', function ($scope) {
+
+    })
+</script>
+</body>
+</html>
