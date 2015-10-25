@@ -1,0 +1,57 @@
+ <!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body ng-controller="myController">
+<div>
+
+    <links linkattr="{{haha}}"></links>
+    <dengyutest dengyumodel="dengyu"></dengyutest>
+    <input type="text" ng-model="dengyu"/>
+
+    <andtest shouName="sayhello(name)"></andtest>
+</div>
+<script src="bower_components/angular/angular.js"></script>
+<script>
+    var app = angular.module('myApp', []);
+    app.directive('links', function () {
+        return {
+            scope:{
+                linkattr:"@"
+            },
+            restrict:'E',
+            template:'<h1 >{{linkattr}}</h1>'
+        }
+    }).directive('dengyutest', function () {
+        return{
+            template:'<input ng-model="dengyumodel">'
+            ,restrict:'E',
+            scope:{
+                dengyumodel:"="
+            }
+        }
+    });
+    app.directive('andtest', function () {
+       return{
+           scope:{
+               shouName:'&'
+           },
+           restrict:'E',
+           template:'<input ng-model="username"><button ng-click="shouName({name:username})">QQ群</button>'
+
+
+       }
+
+    });
+    app.controller('myController', function ($scope) {
+        $scope.haha = 'hhhhh';
+        $scope.dengyu = 'dengyqqq u';
+        $scope.sayhello= function (name) {
+            console.info(name);
+        }
+    });
+</script>
+</body>
+</html>
