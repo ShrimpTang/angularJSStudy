@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<hello></hello>
+<div hello></div>
+<!-- directive:hello -->
+<div class="hello"></div>
+<links></links>
+<div ng-controller="myController">
+
+    <links howEvent="ff()"></links>
+</div>
+<script src="bower_components/angular/angular.js"></script>
+<script>
+    var app = angular.module('myApp', []);
+    app.directive('hello', function () {
+        return {
+            restrict: 'AEMC',
+            template: '<h1>HI tangzx</h1>',
+            replace: true
+        }
+    }).directive('links', function () {
+        return {
+            restrict:'E',
+            template:'<h1>LINK</h1>',
+            link: function (scope, element, attr) {
+                element.bind('click', function () {
+//                    console.info('link click');
+                    scope.$apply(attr.howevent);
+                })
+            }
+        }
+    }).controller('myController', function ($scope) {
+        $scope.ff = function () {
+            console.info('fff');
+        }
+    })
+</script>
+</body>
+</html>
