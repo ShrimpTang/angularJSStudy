@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body ng-controller="myController">
+<h2>Ctrl的属性</h2>
+{{name}}@{{age}}
+<button ng-click="say()">say</button>
+<hr/>
+<all-test qname="{{name}}" qage="{{age}}" sayall="say()"></all-test>
+<script src="bower_components/angular/angular.js"></script>
+<script>
+    angular.module('myApp', [])
+            .directive('allTest', function () {
+                return {
+                    restrict: 'E',
+                    templateUrl:'tpl/temp.all.html',
+                    scope:{
+                        qname:"@",
+                        qage:"@",
+                        sayall:"&sayall"
+                    }
+                }
+            })
+            .controller('myController', function ($scope) {
+                $scope.name = '瞎子';
+                $scope.age = 21;
+                $scope.say = function () {
+                    console.info($scope.name + "@" + $scope.age);
+                }
+            });
+</script>
+</body>
+</html>

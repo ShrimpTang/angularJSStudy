@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body ng-controller="myController">
+<temp-c></temp-c>
+<hello></hello>
+<script src="bower_components/angular/angular.js"></script>
+<script>
+    var app = angular.module('myApp', []);
+    app.run(function ($templateCache) {
+        $templateCache.put('haha.html', '<h1>哈哈</h1>')
+    });
+    app.directive('tempC', function () {
+        return {
+            restrict: "E",
+            templateUrl: "haha.html",
+            //template: '<h1>ccc</h1>',
+            replace: true
+        }
+    });
+
+    app.controller('myController', function ($scope) {
+
+    });
+</script>
+</body>
+</html>

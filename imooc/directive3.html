@@ -12,6 +12,7 @@
     <input type="text" ng-model="dengyu"/>
 
     <andtest shouName="sayhello(name)"></andtest>
+    <linkccc tyu="什么贵"></linkccc>
 </div>
 <script src="bower_components/angular/angular.js"></script>
 <script>
@@ -32,7 +33,18 @@
                 dengyumodel:"="
             }
         }
+    }).directive('linkccc', function () {
+        return {
+            scope:{
+                linkattr:"@tyu"
+            },
+            restrict:'E',
+            template:'<h1 >{{linkattr}}</h1>'
+        }
     });
+
+
+
     app.directive('andtest', function () {
        return{
            scope:{
