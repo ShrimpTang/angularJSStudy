@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body ng-controller="myController">
+<transcludetest>
+
+    afd
+</transcludetest>
+<script src="bower_components/angular/angular.js"></script>
+<script>
+    angular.module("myApp",[])
+            .directive('transcludetest', function () {
+                return {
+                    restrict:"E",
+                    template:"<div>hahah <div ng-transclude></div></div>",
+                    transclude:true,
+                    replace:true
+                }
+            })
+            .controller('myController', function ($scope) {
+                
+            });
+</script>
+</body>
+</html>

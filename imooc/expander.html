@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        .black {
+            background: black;
+            color: wheat;
+            width: 250px;
+        }
+
+        .w {
+            background: wheat;
+            color: black;
+            width: 250px;
+        }
+    </style>
+    <title></title>
+</head>
+<body ng-controller="myController">
+<expander expander-title="title">
+    {{text}}
+</expander>
+<script src="bower_components/angular/angular.js"></script>
+<script>
+    angular.module("myApp", [])
+            .directive('expander', function () {
+                return {
+                    restrict: "E",
+                    template: "<div><div ng-click='toggle()' class='black'>{{title}}</div><div class='w' ng-show='showMe' ng-transclude></div></div>",
+                    transclude: true,
+                    replace: true,
+                    scope: {
+                        title: "=expanderTitle"
+                    },
+                    link: function (scope, element, attr) {
+                        scope.showMe = false;
+                        scope.toggle = function () {
+                            scope.showMe = !scope.showMe;
+                        }
+                    }
+                }
+            })
+            .controller('myController', function ($scope) {
+                $scope.title = '点击展开';
+                $scope.text = '展开的内容';
+            });
+</script>
+</body>
+</html>
