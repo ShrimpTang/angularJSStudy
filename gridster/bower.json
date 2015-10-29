@@ -1,0 +1,22 @@
+{
+  "name": "gridster",
+  "version": "0.0.0",
+  "homepage": "https://github.com/ShrimpTang/angularJSStudy",
+  "authors": [
+    "Zhenx Tang <moumoon711@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "dependencies": {
+    "jquery": "~2.1.4"
+  },
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
