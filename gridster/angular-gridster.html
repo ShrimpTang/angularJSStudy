@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="bower_components/angular-gridster/dist/angular-gridster.min.css"/>
+    <style>
+        li{
+            background-color: navajowhite;
+        }
+    </style>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/javascript-detect-element-resize/jquery.resize.js"></script>
+    <script src="bower_components/angular-gridster/dist/angular-gridster.min.js"></script>
+</head>
+<body ng-controller="myController">
+<div gridster>
+    <ul>
+        <li gridster-item="si" ng-repeat="si in standardItems"></li>
+    </ul>
+</div>
+<script>
+    angular.module('myApp', ['gridster'])
+            .controller('myController', function ($scope) {
+                $scope.standardItems = [
+                    {sizeX: 2, sizeY: 1, row: 0, col: 0},
+                    {sizeX: 2, sizeY: 2, row: 0, col: 2},
+                    {sizeX: 1, sizeY: 1, row: 0, col: 4},
+                    {sizeX: 1, sizeY: 1, row: 0, col: 5},
+                    {sizeX: 2, sizeY: 1, row: 1, col: 0},
+                    {sizeX: 1, sizeY: 1, row: 1, col: 4},
+                    {sizeX: 1, sizeY: 2, row: 1, col: 5},
+                    {sizeX: 1, sizeY: 1, row: 2, col: 0},
+                    {sizeX: 2, sizeY: 1, row: 2, col: 1},
+                    {sizeX: 1, sizeY: 1, row: 2, col: 3},
+                    {sizeX: 1, sizeY: 1, row: 2, col: 4}
+                ];
+                $scope.$on('gridster-draggable-changed', function(gridster) {
+                    console.info(gridster);
+                })
+            })
+</script>
+</body>
+</html>
